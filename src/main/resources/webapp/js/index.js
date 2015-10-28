@@ -9,7 +9,7 @@ $(document).ready(function () {
     resultDiv.hide();
 	
     function transformerUri() {
-        return transformerBase+"?taxonomy="+encodeURIComponent($("#taxonomy").val());
+        return transformerBase+"?taxonomy="+encodeURIComponent($.trim($("#taxonomy").val()));
     }
 	
     $('#generate').on("click", function() {
@@ -24,10 +24,10 @@ $(document).ready(function () {
             "<> a trldpc:TransformerRegistration;"+
             "    trldpc:transformer <"+transformerUri()+">;"+
             "    dct:title 'Dictionary Matcher transformer'@en;"+
-            "    dct:description 'A Dictionary Matcher transformer using "+$("#taxonomy").val()+"'.";
+            "    dct:description 'A Dictionary Matcher transformer using "+$.trim($("#taxonomy").val())+"'.";
         //hideMessages();
         startLoading();
-        var container = $("#transformerRegistry").val();
+        var container = $.trim($("#transformerRegistry").val());
         var tentativeName = "dictionary-matcher-transformer";
         var headerCollection = { "Slug" : tentativeName };
         function registerSuccess(response, textStatus, request) {
